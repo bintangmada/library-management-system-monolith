@@ -1,0 +1,7 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: top 0.3s ease-in-out;
+  /* ... CSS navbar lainnya ... */
+}
