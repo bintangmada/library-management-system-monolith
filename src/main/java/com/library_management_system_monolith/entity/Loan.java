@@ -2,16 +2,16 @@ package com.library_management_system_monolith.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
-@Table(name = "REVIEWS")
-public class Review {
+@Table(name = "LOANS")
+public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
-    private Integer reviewId;
+    @Column(name = "loan_id")
+    private Integer loanId;
 
     @Column(name = "user_id")
     private Integer userId; // Foreign key ke USERS
@@ -19,13 +19,17 @@ public class Review {
     @Column(name = "book_id")
     private Integer bookId; // Foreign key ke BOOKS
 
-    private Integer rating;
+    @Column(name = "loan_date")
+    private Date loanDate;
 
-    @Column(name = "review_text", columnDefinition = "TEXT")
-    private String reviewText;
+    @Column(name = "due_date")
+    private Date dueDate;
 
-    @Column(name = "review_date")
-    private Timestamp reviewDate;
+    @Column(name = "return_date")
+    private Date returnDate;
+
+    @Enumerated(EnumType.STRING)
+    private LoanStatus status;
 
     // Getters and Setters
     // ...

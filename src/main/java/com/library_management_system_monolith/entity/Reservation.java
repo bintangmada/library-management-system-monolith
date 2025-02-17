@@ -2,84 +2,29 @@ package com.library_management_system_monolith.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "reservations")
+@Table(name = "RESERVATIONS")
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private LocalDateTime reservationDate;
-    private LocalDateTime expiryDate;
-    private String status; // PENDING, COMPLETED, CANCELLED
-    
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
-    
-    // Getter dan Setter
-    public Reservation() {
-    }
+    @Column(name = "reservation_id")
+    private Integer reservationId;
 
-    public Reservation(LocalDateTime reservationDate, LocalDateTime expiryDate, String status, User user, Book book) {
-        this.reservationDate = reservationDate;
-        this.expiryDate = expiryDate;
-        this.status = status;
-        this.user = user;
-        this.book = book;
-    }
+    @Column(name = "user_id")
+    private Integer userId; // Foreign key ke USERS
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "book_id")
+    private Integer bookId; // Foreign key ke BOOKS
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "reservation_date")
+    private Timestamp reservationDate;
 
-    public LocalDateTime getReservationDate() {
-        return reservationDate;
-    }
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status;
 
-    public void setReservationDate(LocalDateTime reservationDate) {
-        this.reservationDate = reservationDate;
-    }
-
-    public LocalDateTime getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(LocalDateTime expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
+    // Getters and Setters
+    // ...
 }

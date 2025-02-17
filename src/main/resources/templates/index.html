@@ -11,10 +11,20 @@
       href="https://unpkg.com/@heroicons/react/24/outline"
       rel="stylesheet"
     />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .navbar {
+        transition: top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    </style>
   </head>
   <body class="font-sans">
     <!-- Navbar -->
-    <nav class="bg-gray-900 fixed w-full z-50">
+    <nav
+      class="navbar bg-gray-900 fixed w-full z-50 transition-all duration-700 ease-in-out"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
@@ -54,8 +64,9 @@
                 >Statistik</a
               >
               <a
-                href="/login"
-                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+                href="#"
+                onclick="openLoginModal()"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors duration-300"
                 >Masuk</a
               >
             </div>
@@ -64,256 +75,1545 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div id="beranda" class="relative bg-gray-900 h-screen flex items-center">
-      <div class="absolute inset-0">
-        <img
-          class="w-full h-full object-cover opacity-40"
-          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1"
-          alt="Library"
-        />
-      </div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          Selamat Datang di Perpustakaan Digital
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8">
-          Sistem manajemen perpustakaan modern untuk pengalaman membaca yang
-          lebih baik
-        </p>
-        <div class="flex justify-center space-x-4">
-          <a
-            href="/register"
-            class="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300"
-            >Daftar Sekarang</a
-          >
-          <a
-            href="#fitur"
-            class="border-2 border-white text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition duration-300"
-            >Pelajari Lebih Lanjut</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- Features Section -->
-    <div id="fitur" class="py-16 bg-white">
+    <!-- Books Collection dengan ukuran card yang lebih kecil -->
+    <div class="pt-24 pb-16 bg-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-          Fitur Unggulan
+          Koleksi Buku
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-6 text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12 text-blue-600 mx-auto mb-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Book Card Template dengan ukuran yang lebih kecil -->
+          <div class="group w-full h-[500px]">
+            <!-- Mengubah dari h-[600px] menjadi h-[500px] -->
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Pencarian Mudah</h3>
-            <p class="text-gray-600">
-              Temukan buku dengan cepat menggunakan sistem pencarian canggih
-            </p>
-          </div>
-          <div class="p-6 text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12 text-blue-600 mx-auto mb-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Peminjaman Online</h3>
-            <p class="text-gray-600">
-              Pinjam dan perpanjang buku secara online tanpa kerumitan
-            </p>
-          </div>
-          <div class="p-6 text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12 text-blue-600 mx-auto mb-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Notifikasi Real-time</h3>
-            <p class="text-gray-600">
-              Dapatkan pengingat untuk pengembalian dan informasi penting
-              lainnya
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+              <!-- Image Container yang lebih kecil -->
+              <div class="relative h-[300px] overflow-hidden">
+                <!-- Mengubah dari h-[380px] menjadi h-[300px] -->
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg"
+                  alt="The Hobbit"
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
 
-    <!-- Popular Books Section -->
-    <div class="py-16 bg-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-          Buku Populer
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Book 1 -->
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg"
-              alt="The Hobbit"
-              class="w-full h-64 object-cover"
-            />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold mb-2">The Hobbit</h3>
-              <p class="text-gray-600 mb-2">J.R.R. Tolkien</p>
-              <div class="flex items-center mb-2">
-                <div class="flex text-yellow-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+                <!-- Category Badge - disesuaikan posisinya -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <!-- Mengubah margin dari m-4 menjadi m-3 -->
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">High Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
                   >
-                    <path
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    />
-                  </svg>
-                  <span class="ml-1 text-gray-600">4.8/5.0</span>
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      <!-- Mengubah margin dan ukuran text -->
+                      Petualangan epik Bilbo Baggins dalam dunia fantasi
+                      Middle-earth.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p class="text-gray-500 text-sm">
-                Petualangan epik Bilbo Baggins dalam dunia fantasi Middle-earth.
-              </p>
+
+              <!-- Book Info dengan padding yang lebih kecil -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Mengubah dari h-[220px] dan p-6 -->
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <!-- Mengubah dari mb-4 -->
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    The Hobbit
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <!-- Mengubah dari mt-2 -->
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium"
+                      >J.R.R. Tolkien</span
+                    >
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Mengubah dari pt-4 -->
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.8</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
+          <!-- Duplicate this structure for other books -->
           <!-- Book 2 -->
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
-              alt="Harry Potter and the Sorcerer's Stone"
-              class="w-full h-64 object-cover"
-            />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold mb-2">
-                Harry Potter and the Sorcerer's Stone
-              </h3>
-              <p class="text-gray-600 mb-2">J.K. Rowling</p>
-              <div class="flex items-center mb-2">
-                <div class="flex text-yellow-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
+                  alt="Harry Potter and the Sorcerer's Stone"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Young Adult Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
                   >
-                    <path
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    />
-                  </svg>
-                  <span class="ml-1 text-gray-600">4.9/5.0</span>
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Kisah awal petualangan Harry Potter di Sekolah Sihir
+                      Hogwarts.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p class="text-gray-500 text-sm">
-                Kisah awal petualangan Harry Potter di Sekolah Sihir Hogwarts.
-              </p>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Harry Potter and the Sorcerer's Stone
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">J.K. Rowling</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.9</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Book 3 -->
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg"
-              alt="Tomorrow, and Tomorrow, and Tomorrow"
-              class="w-full h-64 object-cover"
-            />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold mb-2">
-                Tomorrow, and Tomorrow, and Tomorrow
-              </h3>
-              <p class="text-gray-600 mb-2">Gabrielle Zevin</p>
-              <div class="flex items-center mb-2">
-                <div class="flex text-yellow-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg"
+                  alt="Tomorrow, and Tomorrow, and Tomorrow"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Literary Fiction</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
                   >
-                    <path
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    />
-                  </svg>
-                  <span class="ml-1 text-gray-600">4.7/5.0</span>
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Novel terbaik tahun 2022 tentang persahabatan dan
+                      kreativitas.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p class="text-gray-500 text-sm">
-                Novel terbaik tahun 2022 tentang persahabatan dan kreativitas.
-              </p>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Tomorrow, and Tomorrow, and Tomorrow
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium"
+                      >Gabrielle Zevin</span
+                    >
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.7</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Book 4 -->
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
-              alt="Atomic Habits"
-              class="w-full h-64 object-cover"
-              onerror="this.onerror=null; this.src='https://via.placeholder.com/400x640?text=No+Image+Available';"
-            />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold mb-2">Atomic Habits</h3>
-              <p class="text-gray-600 mb-2">James Clear</p>
-              <div class="flex items-center mb-2">
-                <div class="flex text-yellow-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
+                  alt="Atomic Habits"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                  onerror="this.onerror=null; this.src='https://via.placeholder.com/400x640?text=No+Image+Available';"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
                   >
-                    <path
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    />
-                  </svg>
-                  <span class="ml-1 text-gray-600">4.8/5.0</span>
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Panduan praktis untuk membangun kebiasaan baik dan
+                      menghilangkan kebiasaan buruk.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p class="text-gray-500 text-sm">
-                Panduan praktis untuk membangun kebiasaan baik dan menghilangkan
-                kebiasaan buruk.
-              </p>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Atomic Habits
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">James Clear</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.8</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- View More Button -->
-        <div class="text-center mt-8">
-          <a
-            href="/books"
-            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
-          >
-            Lihat Semua Buku
-          </a>
+          <!-- Book 5 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579036753i/77203.jpg"
+                  alt="The Kite Runner"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Kisah persahabatan, pengkhianatan, dan penebusan di
+                      Afghanistan.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    The Kite Runner
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium"
+                      >Khaled Hosseini</span
+                    >
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.7</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.1k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 6 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1500930947i/9969571.jpg"
+                  alt="Ready Player One"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Petualangan dalam dunia virtual OASIS yang penuh referensi
+                      pop culture.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Ready Player One
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">Ernest Cline</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.6</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 7 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597695864i/54493401.jpg"
+                  alt="Project Hail Mary"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Petualangan seorang astronot yang berusaha menyelamatkan
+                      Bumi.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Project Hail Mary
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">Andy Weir</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.9</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 8 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1490528560i/4671.jpg"
+                  alt="1984"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Novel distopia klasik tentang pengawasan total dan kontrol
+                      pemerintah.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    1984
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">George Orwell</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.8</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 9 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1684638853i/2429135.jpg"
+                  alt="The Girl with the Dragon Tattoo"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Crime Thriller</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Thriller menegangkan yang mengungkap misteri keluarga dan
+                      kejahatan di Swedia.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    The Girl with the Dragon Tattoo
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">Stieg Larsson</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.7</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.1k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 10 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
+                  alt="The Alchemist"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Philosophical Fiction</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Kisah perjalanan spiritual seorang gembala muda mencari
+                      harta karunnya.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    The Alchemist
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">Paulo Coelho</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.6</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.2k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 11 -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg"
+                  alt="Dune"
+                  class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div class="absolute top-0 left-0 z-20">
+                  <div class="relative flex items-center m-3">
+                    <span
+                      class="relative inline-flex items-center gap-2 pl-3 pr-4 py-1.5 text-xs font-medium bg-gradient-to-r from-black/40 to-transparent backdrop-blur-md text-white/90 border-l-2 border-blue-500 transition-all duration-300 group-hover:pl-4"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 text-blue-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <span class="relative">Epic Fantasy</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Kisah epik tentang politik, agama, dan perjuangan di
+                      planet gurun Arrakis.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    Dune
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium">Frank Herbert</span>
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.8</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.4k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mengganti Dune dengan The Way of Kings -->
+          <div class="group w-full h-[500px]">
+            <div
+              class="relative bg-white rounded-[20px] shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 h-full"
+            >
+              <!-- Image Container -->
+              <div class="relative h-[300px] overflow-hidden">
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg"
+                  alt="The Way of Kings"
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+
+                <!-- Category Badge -->
+                <div
+                  class="absolute bottom-4 left-4 z-20 transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <span
+                    class="relative inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-white bg-gradient-to-r from-purple-600/90 to-blue-600/90 rounded-full backdrop-blur-md shadow-lg border border-white/10 transition-all duration-300 hover:scale-105 hover:shadow-purple-500/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-3 w-3 opacity-75"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                      />
+                    </svg>
+                    <span class="relative">Epic Fantasy</span>
+                    <div
+                      class="absolute inset-0 rounded-full bg-white/10 blur-sm -z-10"
+                    ></div>
+                  </span>
+                </div>
+
+                <!-- Glass Morphism Overlay -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+                >
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    <p
+                      class="text-white/90 text-xs leading-relaxed mb-4 line-clamp-3"
+                    >
+                      Kisah epik tentang perang, intrik politik, dan kekuatan
+                      magis di dunia Roshar.
+                    </p>
+                    <button
+                      class="w-full bg-white/10 backdrop-blur-md text-white py-2.5 rounded-xl font-medium transition-all duration-300 hover:bg-white/20 flex items-center justify-center gap-2 border border-white/20"
+                    >
+                      <span>Lihat Detail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Info -->
+              <div class="p-5 flex flex-col justify-between h-[200px]">
+                <!-- Title & Author -->
+                <div class="mb-3">
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1"
+                  >
+                    The Way of Kings
+                  </h3>
+                  <p class="text-gray-500 mt-1.5 flex items-center gap-2">
+                    <span class="text-xs">By</span>
+                    <span class="text-gray-700 font-medium"
+                      >Brandon Sanderson</span
+                    >
+                  </p>
+                </div>
+
+                <!-- Book Stats -->
+                <div
+                  class="flex items-center justify-between pt-3 border-t border-gray-100"
+                >
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                      <span class="text-sm font-semibold text-gray-700"
+                        >4.7</span
+                      >
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">2.5k reviews</span>
+                  </div>
+
+                  <!-- Status Badge -->
+                  <span
+                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-green-700 bg-green-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    Tersedia
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -447,10 +1747,250 @@
         </div>
         <div class="border-t border-gray-800 mt-8 pt-8 text-center">
           <p class="text-gray-400">
-            &copy; 2025 Library Management System. All rights reserved by Bintang Mada
+            &copy; 2025 Library Management System. All rights reserved by
+            Bintang Mada
           </p>
         </div>
       </div>
     </footer>
+
+    <!-- Login Modal - dengan transisi yang lebih smooth -->
+    <div
+      id="loginModal"
+      class="fixed inset-0 z-50 hidden opacity-0 transition-all duration-300"
+    >
+      <!-- Backdrop dengan fade -->
+      <div
+        class="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+      ></div>
+
+      <!-- Modal Content dengan slide dan fade -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md transform scale-95 opacity-0 transition-all duration-300"
+      >
+        <!-- Modal content tetap sama -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 space-y-8">
+          <!-- Header with close button -->
+          <div class="flex justify-between items-center">
+            <div class="space-y-1">
+              <h2 class="text-2xl font-bold text-gray-900">Masuk</h2>
+              <p class="text-sm text-gray-500">
+                Masuk ke akun Digital Library Anda
+              </p>
+            </div>
+            <button
+              onclick="closeLoginModal()"
+              class="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Login Form -->
+          <form class="space-y-6" action="/login" method="POST">
+            <!-- Email Field -->
+            <div class="space-y-2">
+              <label for="email" class="text-sm font-medium text-gray-700 block"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300 outline-none"
+                placeholder="nama@email.com"
+                required
+              />
+            </div>
+
+            <!-- Password Field -->
+            <div class="space-y-2">
+              <label
+                for="password"
+                class="text-sm font-medium text-gray-700 block"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300 outline-none"
+                placeholder="Masukkan password"
+                required
+              />
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label for="remember" class="ml-2 block text-sm text-gray-700"
+                  >Ingat saya</label
+                >
+              </div>
+              <a
+                href="#"
+                class="text-sm font-medium text-blue-600 hover:text-blue-500"
+                >Lupa password?</a
+              >
+            </div>
+
+            <!-- Login Button -->
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
+            >
+              Masuk
+            </button>
+          </form>
+
+          <!-- Social Login -->
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-gray-500">Atau masuk dengan</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <button
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+            >
+              <img
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                alt="Google"
+                class="h-5 w-5 mr-2"
+              />
+              <span class="text-sm font-medium text-gray-700">Google</span>
+            </button>
+            <button
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+            >
+              <img
+                src="https://www.svgrepo.com/show/448234/facebook.svg"
+                alt="Facebook"
+                class="h-5 w-5 mr-2"
+              />
+              <span class="text-sm font-medium text-gray-700">Facebook</span>
+            </button>
+          </div>
+
+          <!-- Sign Up Link -->
+          <div class="text-center">
+            <p class="text-sm text-gray-600">
+              Belum punya akun?
+              <a href="#" class="font-medium text-blue-600 hover:text-blue-500"
+                >Daftar sekarang</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update JavaScript untuk animasi yang lebih smooth -->
+    <script>
+      function openLoginModal() {
+        const modal = document.getElementById("loginModal");
+        const backdrop = modal.querySelector("div:first-child");
+        const content = modal.querySelector("div:nth-child(2)");
+
+        // Tampilkan modal
+        modal.classList.remove("hidden");
+
+        // Trigger reflow
+        modal.offsetHeight;
+
+        // Animasi fade in
+        modal.classList.add("opacity-100");
+        backdrop.classList.add("opacity-100");
+
+        // Animasi slide dan fade in untuk konten
+        content.classList.remove("scale-95", "opacity-0");
+        content.classList.add("scale-100", "opacity-100");
+
+        // Disable scroll
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLoginModal() {
+        const modal = document.getElementById("loginModal");
+        const backdrop = modal.querySelector("div:first-child");
+        const content = modal.querySelector("div:nth-child(2)");
+
+        // Animasi fade out
+        modal.classList.remove("opacity-100");
+        backdrop.classList.remove("opacity-100");
+
+        // Animasi slide dan fade out untuk konten
+        content.classList.remove("scale-100", "opacity-100");
+        content.classList.add("scale-95", "opacity-0");
+
+        // Tunggu animasi selesai sebelum menyembunyikan modal
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          // Enable scroll
+          document.body.style.overflow = "auto";
+        }, 300);
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("loginModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeLoginModal();
+          }
+        });
+
+      // Prevent modal close when clicking modal content
+      document
+        .querySelector("#loginModal > div:nth-child(2)")
+        .addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+    </script>
+
+    <script>
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
+
+      window.addEventListener("scroll", function () {
+        let scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop <= 0) {
+          // Di paling atas
+          navbar.style.top = "0";
+        } else if (scrollTop > lastScrollTop) {
+          // Scroll ke bawah
+          navbar.style.top = "-100px";
+        } else {
+          // Scroll ke atas
+          navbar.style.top = "0";
+        }
+
+        lastScrollTop = scrollTop;
+      });
+    </script>
   </body>
 </html>
