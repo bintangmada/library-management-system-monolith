@@ -1,4 +1,4 @@
-package com.library.controller;
+package com.library_management_system_monolith.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
