@@ -6,6 +6,9 @@ import com.library_management_system_monolith.payload.RoleDto;
 import com.library_management_system_monolith.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class RoleService {
 
@@ -38,6 +41,28 @@ public class RoleService {
         apiResponse.setStatus(true);
         apiResponse.getMessages().add("Role with name "+savedRole.getRoleName()+" successfully created");
         apiResponse.setPayload(savedRoleDto);
+        return apiResponse;
+    }
+
+    public ApiResponse<List<RoleDto>> getAllRoles(){
+        ApiResponse apiResponse = new ApiResponse<>();
+        List<Role> roles = roleRepository.findAll();
+        if(roles.isEmpty()){
+            apiResponse.setStatus(false);
+            apiResponse.setPayload(null);
+            apiResponse.getMessages().add("No role name is found");
+            return apiResponse;
+        }
+
+        List<RoleDto> roleDtos = roles
+                .stream()
+                .map(role -> {
+                    return mapRoleEntityToRoleDto(role);
+                }).collect(Collectors.toList());
+
+        apiResponse.setStatus(true);
+        apiResponse.setPayload(roleDtos);
+        apiResponse.getMessages().add("List All Roles");
         return apiResponse;
     }
 

@@ -5,10 +5,9 @@ import com.library_management_system_monolith.payload.RoleDto;
 import com.library_management_system_monolith.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/role")
@@ -28,5 +27,14 @@ public class RoleController {
         }else{
             return new ResponseEntity<>(savedRole, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping()
+    public ResponseEntity<ApiResponse<List<RoleDto>>> getAllRoles(){
+        ApiResponse roles = roleService.getAllRoles();
+        if (roles.getPayload() == null){
+            return new ResponseEntity<>(roles, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 }
