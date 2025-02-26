@@ -5,11 +5,13 @@ import com.library_management_system_monolith.payload.ApiResponse;
 import com.library_management_system_monolith.payload.RoleDto;
 import com.library_management_system_monolith.repository.RoleRepository;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import org.slf4j.Logger;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -165,6 +167,11 @@ public class RoleService {
         return apiResponse;
     }
 
+    public Role getById(int id) {
+        return roleRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Role ID %s Not Found !!", id))
+        );
+    }
 
     private static RoleDto mapRoleEntityToRoleDto(Role role) {
         logger.debug("Mapping Role entity to RoleDto: {}", role);
