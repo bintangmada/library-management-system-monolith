@@ -3,6 +3,7 @@ package com.library_management_system_monolith.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "USER_CONFIRMATION_TOKENS")
@@ -16,22 +17,31 @@ public class UserConfirmationToken {
     @Column(name = "user_id")
     private Integer userId; // Foreign key ke USERS
 
+    @Column(nullable = false)
     private String token;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "confirmation_type")
     private ConfirmationType confirmationType;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "expires_at")
-    private Timestamp expiresAt;
+    @Column(nullable = false)
+    private LocalDateTime expiresAt;
+
+    private LocalDateTime confirmedAt;
 
     @Column(name = "is_used")
     private Boolean isUsed;
 
     public UserConfirmationToken() {
+    }
+    public UserConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Integer userId) {
+        this.token = token;
+        this.createdAt = createdAt;
+        this.expiresAt = expiresAt;
+        this.userId = userId;
     }
 
     public Integer getConfirmationId() {
@@ -66,20 +76,28 @@ public class UserConfirmationToken {
         this.confirmationType = confirmationType;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getExpiresAt() {
+    public LocalDateTime getExpiresAt() {
         return expiresAt;
     }
 
-    public void setExpiresAt(Timestamp expiresAt) {
+    public void setExpiresAt(LocalDateTime expiresAt) {
         this.expiresAt = expiresAt;
+    }
+
+    public LocalDateTime getConfirmedAt() {
+        return confirmedAt;
+    }
+
+    public void setConfirmedAt(LocalDateTime confirmedAt) {
+        this.confirmedAt = confirmedAt;
     }
 
     public Boolean getUsed() {
