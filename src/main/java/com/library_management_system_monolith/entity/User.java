@@ -3,6 +3,7 @@ package com.library_management_system_monolith.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "USERS")
@@ -26,7 +27,7 @@ public class User {
     private Timestamp lastLogin;
 
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     public User() {
     }
@@ -85,11 +86,11 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }

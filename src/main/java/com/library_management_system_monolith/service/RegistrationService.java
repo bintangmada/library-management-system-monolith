@@ -72,6 +72,9 @@ public class RegistrationService {
         user.setUsername(registrationDto.getUsername());
         user.setPassword(registrationDto.getPassword());
         user.setEmail(registrationDto.getEmail());
+        user.setCreatedAt(LocalDateTime.now());
+        user.setActive(false);
+        user.setLastLogin(null);
 
         // Set Role berdasarkan UserType
         List<Role> roles = new ArrayList<>();
