@@ -25,11 +25,9 @@ public class EmailService implements EmailSender {
 
     @Override
     @Async
-    public void send(String to, String subject, String content) throws MailException, InterruptedException{
-        System.out.println("Sleeping now...");
-        Thread.sleep(10000);
-        System.out.println("Sending email...");
+    public void send(String to, String subject, String content) {
         try {
+            LOGGER.info("Sending email to {}", to);
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
             helper.setText(content, true);
@@ -37,9 +35,10 @@ public class EmailService implements EmailSender {
             helper.setSubject(subject);
             helper.setFrom("tulisanbintangmada@gmail.com");
             mailSender.send(mimeMessage);
+            LOGGER.info("Email successfully sent to {}", to);
         } catch (MessagingException e) {
-            LOGGER.error("failed to send email", e);
-            throw new IllegalStateException("failed to send email");
+            LOGGER.error("Failed to send email", e);
+            throw new IllegalStateException("Failed to send email");
         }
     }
 }
